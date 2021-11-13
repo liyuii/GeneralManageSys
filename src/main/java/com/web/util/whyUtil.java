@@ -1,8 +1,8 @@
 package com.web.util;
 
-import com.web.entity.User;
+import com.web.LoginModule.entity.User;
 import com.web.query.UserQuery;
-import com.web.service.UserService;
+import com.web.LoginModule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

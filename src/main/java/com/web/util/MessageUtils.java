@@ -2,7 +2,7 @@ package com.web.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.web.entity.tx_msg;
+import com.web.LoginModule.entity.tx_msg;
 
 //封装发送的消息内容
 public class MessageUtils {
