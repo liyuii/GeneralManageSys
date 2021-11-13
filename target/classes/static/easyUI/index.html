@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- jquery核心库 -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- easyui核心库 -->
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <!-- easyui核心UI文件 css -->
+    <link href="../css/easyui.css" rel="stylesheet" type="text/css"/>
+    <!-- easyui图标 -->
+    <link href="../css/icon.css" rel="stylesheet" type="text/css"/>
+    <!-- easyui国际化文件 -->
+    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+</head>
+
+
+<body>
+
+<!-- <div id="main" onclick="on()">111</div> -->
+
+<!-- 面板 -->
+<div id="p" class="easyui-panel" style="width:500px;height:200px;padding:10px;"
+    title="My Panel" iconCls="icon-save" collapsible="true">
+    The panel content
+</div>
+
+<!-- 下拉框 -->
+<!-- <input class="easyui-combobox" name="language"
+    data-options="
+    url:'combobox_data.json',
+    valueField:'id',
+    textField:'text',
+    panelHeight:'auto',
+    onSelect:function(record){
+    alert(record.text)
+    }">	 -->
+ 
+ 
+<!-- 折叠面板 -->
+<!-- <div id="aa" class="easyui-accordion" style="width:300px;height:200px;">
+    <div title="Title1" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+		<h3 style="color:#0099FF;">Accordion for jQuery</h3>
+		<p>Accordion is a part of easyui framework for jQuery.
+		It lets you define your accordion component on web page more easily.</p>
+    </div>
+    <div title="Title2" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">
+		content2
+    </div>
+    <div title="Title3">
+		content3
+    </div>
+</div> -->
+
+<!-- 标签页 -->
+<!-- <div id="tt" class="easyui-tabs" style="width:500px;height:250px;">
+    <div title="Tab1" style="padding:20px;display:none;">
+		tab1
+    </div>
+    <div title="Tab2" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+		tab2
+    </div>
+    <div title="Tab3" data-options="iconCls:'icon-reload',closable:true" style="padding:20px;display:none;">
+		tab3
+    </div>
+</div> -->
+
+<!-- <a href="http://localhost:8080/easyUI/request.do">链接</a> -->
+
+<!-- 表格 -->
+<div id="stuInfo"></div>
+
+
+<script>
+	// $(function () {
+	// 	$("#p").panel({
+	// 		title: "标题",
+	// 		width: 300,
+	// 		height: 200,
+	// 		href: "http://localhost:8080/easyUI/request.do"
+	// 	});
+	// });
+	
+	$(function () {
+		
+		$("#stuInfo").datagrid({
+			title:'商品信息',
+			iconCls:'icon-save',
+			nowrap:true,                
+			fitColumns: true,
+			url:'json/datagrid_data.json',
+			method:'get',//请求本地数据要用get
+			onLoadSuccess:function(data){   
+			},
+			columns:[[
+				{field:'code',title:'Code',width:50,align:'center'},
+				{field:'name',title:'Name',width:50,align:'center'},
+				{field:'price',title:'Price',width:50,align:'center'}
+			]],
+			scrollbarSize:0,//处理最后多出来一列
+			fitColumns:true,//处理最后多出来一列
+		})
+	});
+
+
+</script>
+
+
+</body>
+</html>

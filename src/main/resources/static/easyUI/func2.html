@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/lhgdialog4/lhgdialog/lhgdialog.min.js"></script>
+	</head>
+	<body>
+		
+		<!--1.弹框-->
+		<a href="javascript:void(0);" onclick="tip1()">弹框</a>
+		
+		<!--提示框-->
+		<a href="javascript:void(0);" onclick="tip2()">提示框</a>
+		
+		<!--确认框-->
+		<a href="javascript:void(0);" onclick="tip3()">确认框</a>
+		
+		<script>
+			
+			function tip1(){
+				$.dialog({id:'id',title:'标题',width:'500px',height:'300px',content:'这里是一个弹框'});
+				// $.dialog({ id:'specialItemHz', title:'汇总单据', width:'800px', height:'500px', content:'这里是内容',lock: true,drag:false,min:false,max:false });
+			}
+			
+			function tip2(){
+				$.dialog.alert("这是一个提示框");
+			}
+			
+			function tip3(){	
+				$.dialog.confirm("确定执行下面的操作吗？",function(){
+					
+				});
+			}
+			
+		</script>
+		
+	</body>
+</html>

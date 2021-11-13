@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.dao.UserDao">
+
+    <resultMap id="UserMap" type="com.web.entity.User" >
+        <id column="user_id" property="userId" jdbcType="CHAR" />
+        <result column="user_local" property="userLocal" jdbcType="VARCHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_pyname" property="userPyName" jdbcType="VARCHAR" />
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+        <result column="user_type" property="userType" jdbcType="VARCHAR" />
+        <result column="user_number" property="userNumber" jdbcType="DECIMAL" />
+        <result column="user_ruler" property="userRuler" jdbcType="DECIMAL" />
+        <result column="user_money" property="userMoney" jdbcType="DECIMAL" />
+        <result column="user_money2021" property="userMoney2021" jdbcType="DECIMAL" />
+        <result column="user_money2022" property="userMoney2022" jdbcType="DECIMAL" />
+        <result column="user_money2023" property="userMoney2023" jdbcType="DECIMAL" />
+        <result column="user_money2024" property="userMoney2024" jdbcType="DECIMAL" />
+        <result column="user_money2025" property="userMoney2025" jdbcType="DECIMAL" />
+        <result column="user_pay" property="userPay" jdbcType="DECIMAL" />
+        <result column="user_accumulate" property="userAccumulate" jdbcType="INTEGER" />
+        <result column="user_surplus" property="userSurplus" jdbcType="DECIMAL" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+        <result column="update_time" property="updateTime" jdbcType="DATE" />
+    </resultMap>
+
+    <select id="userPage" resultMap="UserMap" parameterType="com.web.query.UserQuery">
+        select * from tb_user where 1=1
+        <if test="queryName != null and queryName != ''">
+            and user_name like "%"#{queryName}"%"
+        </if>
+        and user_type = #{queryType}
+    </select>
+
+    <insert id="addUser" parameterType="com.web.entity.User">
+        insert into tb_user(user_id,user_local,user_name,user_phone,user_money,user_money2021,user_money2022,user_money2023,user_money2024,user_money2025,user_accumulate)
+        values(
+            #{userId,jdbcType=CHAR},
+            #{userLocal,jdbcType=VARCHAR},
+            #{userName,jdbcType=VARCHAR},
+            #{userPhone,jdbcType=VARCHAR},
+            #{userMoney,jdbcType=DECIMAL},
+            #{userMoney2021,jdbcType=DECIMAL},
+            #{userMoney2022,jdbcType=DECIMAL},
+            #{userMoney2023,jdbcType=DECIMAL},
+            #{userMoney2024,jdbcType=DECIMAL},
+            #{userMoney2025,jdbcType=DECIMAL},
+            #{userAccumulate,jdbcType=INTEGER}
+        );
+    </insert>
+
+    <update id="updUser" parameterType="com.web.entity.User">
+        update tb_user
+        <set>
+            <if test="userLocal != null and userLocal != ''">user_local = #{userLocal},</if>
+            <if test="userName != null and userName != ''">user_name = #{userName},</if>
+            <if test="userPhone != null and userPhone != ''">user_phone = #{userPhone},</if>
+            <if test="userAccumulate != null and userAccumulate != ''">user_accumulate = #{userAccumulate},</if>
+            update_time = #{updateTime}
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="delUser" parameterType="java.lang.String">
+        delete from tb_user where user_id=#{userId};
+    </delete>
+
+    <select id="getUserById" resultMap="UserMap" parameterType="java.lang.String">
+        select * from tb_user where user_id=#{userId};
+    </select>
+
+    <select id="getUserByName" resultMap="UserMap" parameterType="java.lang.String">
+        select * from tb_user where user_name=#{userName};
+    </select>
+
+</mapper>

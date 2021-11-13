@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.dao.MenuDao">
+
+    <resultMap id="funMap" type="com.web.entity.Function">
+        <id column="fun_id" property="funId" jdbcType="VARCHAR" />
+        <result column="fun_name" property="funName" jdbcType="VARCHAR" />
+        <result column="fun_code" property="funCode" jdbcType="VARCHAR" />
+        <result column="fun_url" property="funUrl" jdbcType="VARCHAR" />
+        <result column="fun_order" property="funOrder" jdbcType="VARCHAR" />
+        <result column="active" property="active" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="funPage" resultMap="funMap">
+        select distinct f.* from tb_function f,tb_role r,tb_role_func t where
+        f.fun_id = t.fun_id and r.role_id = t.role_id and t.role_id in (
+            select t.role_id from tb_loginer l,tb_role r,tb_loginer_role t where
+                l.login_Id = t.loginer_id and r.role_id = t.role_id and t.loginer_Id = #{id}
+        )
+    </select>
+
+</mapper>

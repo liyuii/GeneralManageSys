@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- jquery核心库 -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- easyui核心库 -->
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <!-- easyui核心UI文件 css -->
+    <link href="../css/easyui.css" rel="stylesheet" type="text/css"/>
+    <!-- easyui图标 -->
+    <link href="../css/icon.css" rel="stylesheet" type="text/css"/>
+    <!-- easyui国际化文件 -->
+    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+	
+	<style>
+		
+/* 		#stuInfo{
+			height: 200px;
+			width: 400px;
+		} */
+		
+		
+	</style>
+	
+	
+</head>
+	<body>
+		
+	<div id="stuInfo"></div>
+		
+	<script>
+		
+		$(function(){
+				$('#stuInfo').datagrid({
+					title:'Editable DataGrid',
+					iconCls:'icon-edit',
+					width:660,
+					height:250,
+					singleSelect:true,
+					idField:'itemid',
+					url:'json/datagrid_data.json',
+					method:'get',
+					columns:[[
+						// {field:'itemid',title:'Item ID',width:60},
+						// {field:'productid',title:'Product',width:100,
+						// 	formatter:function(value){
+						// 		for(var i=0; i<products.length; i++){
+						// 			if (products[i].productid == value) return products[i].name;
+						// 		}
+						// 		return value;
+						// 	},
+						// 	editor:{
+						// 		type:'combobox',
+						// 		options:{
+						// 			valueField:'productid',
+						// 			textField:'name',
+						// 			data:products,
+						// 			required:true
+						// 		}
+						// 	}
+						// },
+						{field:'code',title:'code',width:80,align:'right',editor:{type:'text'}},
+						{field:'name',title:'name',width:80,align:'right',editor:'text'},
+						{field:'price',title:'price',width:150,editor:'numberbox'},
+						// {field:'status',title:'Status',width:50,align:'center',
+						// 	editor:{
+						// 		type:'checkbox',
+						// 		options:{
+						// 			on: 'P',
+						// 			off: ''
+						// 		}
+						// 	}
+						// },
+						// {field:'action',title:'Action',width:70,align:'center',
+						// 	formatter:function(value,row,index){
+						// 		if (row.editing){
+						// 			var s = '<a href="#" onclick="saverow(this)">Save</a> ';
+						// 			var c = '<a href="#" onclick="cancelrow(this)">Cancel</a>';
+						// 			return s+c;
+						// 		} else {
+						// 			var e = '<a href="#" onclick="editrow(this)">Edit</a> ';
+						// 			var d = '<a href="#" onclick="deleterow(this)">Delete</a>';
+						// 			return e+d;
+						// 		}
+						// 	}
+						// }
+					]],
+					onBeforeEdit:function(index,row){
+						alert("onBeforeEdit");	
+						row.editing = true;
+						updateActions(index);
+					},
+					onAfterEdit:function(index,row){
+						row.editing = false;
+						updateActions(index);
+					},
+					onCancelEdit:function(index,row){
+						row.editing = false;
+						updateActions(index);
+					}
+				});
+			});
+			function updateActions(index){
+				$('#tt').datagrid('updateRow',{
+					index: index,
+					row:{}
+				});
+			}
+		
+		
+	</script>
+	
+	</body>
+	
+</html>

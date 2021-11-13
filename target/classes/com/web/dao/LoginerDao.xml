@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.dao.LoginerDao">
+
+    <resultMap id="loginerMap" type="com.web.entity.Loginer">
+        <id column="login_id" property="loginId" jdbcType="VARCHAR" />
+        <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+        <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="loginPage" resultMap="loginerMap" parameterType="String">
+        select * from tb_loginer where loginer_id = #{id}
+    </select>
+
+    <select id="getLoginByName" resultMap="loginerMap" parameterType="String">
+        select * from tb_loginer where login_name = #{name}
+    </select>
+
+</mapper>

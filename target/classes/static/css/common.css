@@ -1,0 +1,73 @@
+@CHARSET "UTF-8";
+/* css reset */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, iframe/* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+th, td { /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+}
+/* 设置默认字体 */
+body,button, input, select, textarea { /* for ie */
+    /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+    font: 13px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+    color: #333;
+}
+body{background-color: #FEFEFE}
+/* 重置列表元素 */
+ul, ol { list-style: none; }
+/* 重置文本格式元素 */
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { border: none; } /* img 让链接里的 img 无边框 */
+/* 使得表单元素在 ie 下能继承字体大小 */
+button, input, select, textarea {
+    font-size: 100%;
+}
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html { overflow-y: scroll; }
+/* 重置表单元素 */
+legend { color: #333; margin-bottom: 13px;} /* for ie6 */
+
+/*表单样式*/
+fieldset { border: 1px solid #999; padding: 8px; margin:10px 10px;}
+fieldset div { padding: 5px; vertical-align: middle;}
+fieldset div div {display: inline-block; padding: 0}
+fieldset input { width: 180px; height:18px; line-height: 18px; margin-right: 3px;}
+fieldset select {width: 120px; margin-left: 0; margin-right:3px; padding-left: 0;}
+fieldset label { width:100px; display:inline-block; }
+fieldset table {border-collapse: collapse; border: 1px solid #eee; text-align: left; float: left;}
+fieldset table tr {border: none}
+fieldset table td {border: none}
+fieldset table td.title{width:40px; background-color: #ccc;}
+fieldset table td.content{width:80px;}
+.input_file {border:1px solid #999; width:180px; height:22px; margin:0 3px;}
+.btn {border:1px solid #999; width:auto; margin:0 4px; height: 22px; padding: 1px 2px;}
+.cbox{width:auto; height:auto; margin: 2px 2px;}
+/*表格样式*/
+table {border-collapse: collapse; border-spacing: 0; text-align: center;}
+table thead {font-size: 13px; line-height: 25px;}
+table tbody tr {border-top:1px solid #ccc;border-bottom:1px solid #ccc; line-height:30px;}
+/*隐藏样式*/
+.hidden { display:none }
+div.inlineDiv{display: inline-block;}
+/*布局样式*/
+.align_right { text-align: right;}
+.align_center { text-align: center;}
+/*字体样式*/
+.bold {font-weight: bold;}
+input.num {width: 45px; text-align: right;}
+/*工具条*/
+.queryCmdUnit {padding:2px 4px; padding-right:10px;}
+.queryCmdUnit label {padding-right: 4px; width:auto;}
+/*分页*/
+.pagination {padding: 6px; text-align: right;}
+.pagination a { display: inline-block; width:25px; line-height:22px; border:1px solid #999; text-align: center; background-color: #eee; text-decoration: none}
+.pagination a.page_btn {width: 45px;}
+.pagination a.cur_page_btn{background-color: #aaa;}
+/*自动补全*/;
+.auto_compelete_outside {position:relative; left:0; top:0; padding: 0}
+/*div.auto_compelete_outside {position:absolute; left:0px; top:0px; border: 1px solid #aaa;}*/
+/*表单验证*/
+.error{border:1px red solid; background-color: #FFB6C1; color:#FFF; padding: 2px; 5px;}

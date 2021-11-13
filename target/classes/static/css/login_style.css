@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body{margin:0 auto;padding:0 auto;font-size:14px;font-family:"黑体";background:url("../img/huzhu/login_bg.jpg") no-repeat;background-size:100%;}
+
+.login_body{
+	width:1175px;
+	height:614px;
+	background:url("../img/huzhu/login_bg2.png") no-repeat;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-left:-588px;
+	margin-top:-307px;
+}
+
+.login_logo{
+	padding-top:50px;
+	padding-left:55px;
+	display:flex;
+}
+
+.login_logo span{
+	font-size:30px;
+	font-weight:600;
+	color:#0067BB;
+	margin-left:5px;
+}
+
+.login_main{
+	margin:10px 40px;
+}
+
+.login_con{
+	width:331px;
+	height:382px;
+	float:right;
+	margin-right:90px;
+}
+
+.login_con_top{
+	width:100%;
+	text-align:center;
+	font-size:28px;
+	font-weight:600;
+	color:#0067BB;
+	padding-bottom:25px;
+}
+
+.login_username{width:291px;height:44px;border:0;border-bottom:1px solid #C7C7C7;background:url(../img/huzhu/ico_username.png) no-repeat top left;padding-left:40px;font-size:14px;color:#999;margin-bottom:25px;}
+
+.login_password{width:291px;height:44px;border:0;border-bottom:1px solid #C7C7C7;background:url(../img/huzhu/ico_password.png) no-repeat top left;padding-left:40px;font-size:14px;color:#999;margin-bottom:25px;}
+
+.yanzheng{width:331px;height:46px;}
+
+.login_yanzheng{width:160px;height:44px;border:0;border-bottom:1px solid #C7C7C7;background:url(../img/huzhu/ico_yanzheng.png) no-repeat top left;padding-left:40px;font-size:14px;color:#999;float:left;}
+
+.yanzheng_img{width:124px;height:46px;float:right;}
+
+.forget{width:331px;height:60px;display: flex;justify-content:space-between;}
+
+.keep_pw{height:60px;line-height:60px;font-size:14px;color:#999;}
+
+.forget_pw{height:60px;line-height:60px;font-size:14px;color:#999;}
+
+.login_sub{width:331px;height:56px;background:#0067BB;-moz-border-radius:5px; -webkit-border-radius:5px;border-radius:5px;border:0;font-size:20px;color:#fff;}
+
+.login_bottom{
+	width:100%;
+	color:#fff;
+	padding-top:510px;
+	text-align:center;
+}

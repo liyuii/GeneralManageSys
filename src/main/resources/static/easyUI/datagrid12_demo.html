@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>DataGrid inline editing - jQuery EasyUI Demo</title>
+    <!-- jquery核心库 -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- easyui核心库 -->
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <!-- easyui核心UI文件 css -->
+    <link href="../css/easyui.css" rel="stylesheet" type="text/css"/>
+    <!-- easyui图标 -->
+    <link href="../css/icon.css" rel="stylesheet" type="text/css"/>
+    <!-- easyui国际化文件 -->
+    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+	<!-- main样式 -->
+	<link href="../css/main.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<div class="main">
+		<div class="tit">
+	 		<span class="tit_left fon_14 fon_blue">综合分析</span>
+	 	</div>
+	 	<input type="hidden" id="currentOrgId" value="${currentOrgId!}"/>
+	 	<input type="hidden" id="currentOrgName" value="${orgName!}"/>
+	 	<input type="hidden" id="fillInType" value="${fillInType!}"/>
+	 	<input type="hidden" id="currentDatestr" value="${currentMonth!}"/>
+		<div class="QueryTerms">
+			<div class="QueryTerms_main1">
+				<div class="QueryTerms_list" >
+					<div class="label">地区：</div>
+					<input type="text" name="orgName" id="orgName" class="QreryTerms_input6" style="width:153px;" value=""/>
+					<input type="hidden" name="orgId" id="orgId" value=""/>
+					<div class="clear"></div>
+				</div>
+				<div class="QueryTerms_list">
+					<div class="label">年份：</div>
+					<input type="text" id="fillInDateStr"  autocomplete="off" name ="fillInDateStr"  class="Wdate" style="float: left;width: 147px;padding-left: 3px;" 
+						onfocus="WdatePicker({dateFmt:'yyyy-MM'})" value=""/>
+					<div class="clear"></div>
+				</div>
+				<div class="QueryTerms_list">
+					<div class="label_8">门诊待遇享受类型：</div>
+						<input type="text" name="specialType" id="specialType" class="QreryTerms_input6" value=""/>
+						<input type="hidden" name="typeId" id="typeId" value=""/>
+					<div class="clear"></div>
+				</div>
+				<div class="QueryTerms_list">
+					<div class="label">疾病类型：</div>
+						<input type="text" name="illType" id="illType" class="QreryTerms_input6" />
+					<div class="clear"></div>
+				</div>
+				<div class="QueryTerms_list">
+					<div class="label">指标：</div>
+						<input type="text" name="targetCode" id="targetCode" class="QreryTerms_input6" />
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="QueryTerms_main2">
+				<div class="clear"></div>
+	       	</div>
+			<div class="clear"></div>
+	    </div>
+		<div class="table_top">
+			<input type="button" class="new_sub03" onclick="goSearch()" value="查询"/>
+			<span></span>
+			<!--<input type="button" class="new_sub01" onclick="exportFun('prov')"value="按省份导出数据" />-->
+			<input type="button" class="new_sub01" onclick="exportFun()"value="导出数据" />
+			<span></span>
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+
+</body>
+</html>
