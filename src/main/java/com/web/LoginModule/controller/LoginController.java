@@ -1,8 +1,10 @@
 package com.web.LoginModule.controller;
 
+import com.web.CommunicateModule.controller.WebsocketController;
+import com.web.LoginModule.entity.*;
+import com.web.LoginModule.service.*;
+import com.web.base.common.Result;
 import com.web.base.common.SystemConstant;
-import com.web.LoginModule.entity.Loginer;
-import com.web.LoginModule.service.LoginService;
 import com.web.util.SessionUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -10,8 +12,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/myLogin")
@@ -20,6 +25,17 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    MenuService menuService;
+
+    @Autowired
+    PermissionService permService;
 
     @RequestMapping("/login")
     public String getRequest(){
@@ -27,40 +43,39 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/testShiro")
-    @ResponseBody
-    public void testShiro(){
-        Subject subject = SecurityUtils.getSubject();
-        String loginer = (String)subject.getPrincipal();
-        if(StringUtils.isEmpty(loginer)){
-            System.out.println("已退出或者未登录");
-        }else {
-            System.out.println(loginer);
-        }
-    }
+//    @RequestMapping("/testShiro")
+//    @ResponseBody
+//    public void testShiro(){
+//        Subject subject = SecurityUtils.getSubject();
+//        String loginer = (String)subject.getPrincipal();
+//        if(StringUtils.isEmpty(loginer)){
+//            System.out.println("已退出或者未登录");
+//        }else {
+//            System.out.println(loginer);
+//        }
+//    }
 
     @RequestMapping("/in")
-    public String in(Loginer loginer){
+    public String in(auth_user user){
 
         Subject subject=SecurityUtils.getSubject();
         //用户名密码令牌
-        AuthenticationToken token=new UsernamePasswordToken(loginer.getLoginName(),loginer.getLoginPassword());
+        AuthenticationToken token=new UsernamePasswordToken(user.getUsername(),user.getUserpassword());
         //shiro 使用异常捕捉登录失败消息
         try {
             //将令牌传到shiro提供的login方法验证，需要自定义realm
             subject.login(token);
-            SessionUtil.getInstace().setSessionKey(SystemConstant.SESSION_SYSUSERINFO,loginer);
+            //将用户信息保存到session
+            SessionUtil.getInstace().setSessionKey(SystemConstant.SESSION_SYSUSERINFO,user);
+            //借助WebsocketController中的map，判断当前用户是否在线，是则不允许重复登录
             WebsocketController web = new WebsocketController();
-            if(web.judge(loginer.getLoginName())){
-                return "chatPage";
+            if(web.judge(user.getUsername())){
+                return "index";
             }else{
                 return "login";
             }
-            //没有异常表示验证成功
-//            Loginer loginer1 = uservice.login(u);
-//            session.setAttribute("user", loginer1);
         } catch (Exception e){
-//            model.addAttribute("error","用户名或密码不正确！");
+            e.printStackTrace();
         }
 //        System.out.println("验证通过");
         return "login";
@@ -74,4 +89,28 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/getUserAuths")
+    @ResponseBody
+    public Result<auth_user> getUserAuths(auth_user user){
+
+        Result<auth_user> result = new Result<>();
+
+        auth_user currentUser = userService.getUserByName(user.getUsername());
+        List<auth_role> roles = roleService.rolePageByUser(currentUser.getUserid());
+        for(auth_role role:roles){
+            List<auth_menu> menus = menuService.getMenuByRole(role.getRoleid());
+            role.setMenus(menus);
+        }
+
+        for(auth_role role:roles){
+            if(role.getMenus()!=null && role.getMenus().size()>=1){
+                for(auth_menu menu:role.getMenus()){
+                    List<auth_permission> perms = permService.getPermByMenu(menu.getMenuid());
+                    menu.setPerms(perms);
+                }
+            }
+        }
+        currentUser.setRoles(roles);
+        return result.setData("v","获取用户权限成功",currentUser);
+    }
 }

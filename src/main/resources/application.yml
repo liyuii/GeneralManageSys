@@ -4,10 +4,11 @@ spring:
     allow-bean-definition-overriding: true
   # 配置数据源
   datasource:
-    url: jdbc:oracle:thin:@192.168.1.47:1521/orcl
+#    url: jdbc:oracle:thin:@192.168.1.47:1521/orcl
+    url: jdbc:oracle:thin:@127.0.0.1:1521/oracle
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: lyf
-    password: lyf
+    username: liyuii
+    password: liyuii
 #  datasource:
 ##    url: jdbc:mysql://localhost:3306/netfactory?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
 #    url: jdbc:mysql://47.102.197.84:3306/netfactory?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false

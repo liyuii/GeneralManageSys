@@ -1,12 +1,14 @@
 package com.web.LoginModule.dao;
 
-import com.web.LoginModule.entity.Role;
+import com.web.LoginModule.entity.auth_role;
 
 import java.util.List;
 
 public interface RoleDao {
 
-    List<Role> rolePage(String id);
+//    List<auth_role> rolePage(String id);
 
-    Role getRoleByName(String name);
+    auth_role getRoleByName(String name);
+
+    List<auth_role> getRoleByUser(String id);
 }

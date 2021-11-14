@@ -1,5 +1,6 @@
 package com.web.base.config;
 
+import com.web.LoginModule.entity.auth_user;
 import com.web.base.common.SystemConstant;
 import com.web.LoginModule.entity.Loginer;
 import org.apache.shiro.SecurityUtils;
@@ -21,10 +22,10 @@ public class WebSocketConfig extends ServerEndpointConfig.Configurator {
 
         Session shiroSession = SecurityUtils.getSubject().getSession();
         if (shiroSession != null) {
-            Loginer loginer= (Loginer)shiroSession.getAttribute(SystemConstant.SESSION_SYSUSERINFO);
+            auth_user user= (auth_user)shiroSession.getAttribute(SystemConstant.SESSION_SYSUSERINFO);
 
-            if(loginer!=null ) {
-                sec.getUserProperties().put(SystemConstant.SESSION_SYSUSERINFO, loginer);
+            if(user!=null ) {
+                sec.getUserProperties().put(SystemConstant.SESSION_SYSUSERINFO, user);
             }
         }
         super.modifyHandshake(sec, request, response);

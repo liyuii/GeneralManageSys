@@ -6,21 +6,29 @@
 
 <mapper namespace="com.web.LoginModule.dao.MenuDao">
 
-    <resultMap id="funMap" type="com.web.LoginModule.entity.Function">
-        <id column="fun_id" property="funId" jdbcType="VARCHAR" />
-        <result column="fun_name" property="funName" jdbcType="VARCHAR" />
-        <result column="fun_code" property="funCode" jdbcType="VARCHAR" />
-        <result column="fun_url" property="funUrl" jdbcType="VARCHAR" />
-        <result column="fun_order" property="funOrder" jdbcType="VARCHAR" />
-        <result column="active" property="active" jdbcType="VARCHAR" />
+    <resultMap id="menuMap" type="com.web.LoginModule.entity.auth_menu">
+        <id column="menuid" property="menuid" jdbcType="VARCHAR" />
+        <result column="menuname" property="menuname" jdbcType="VARCHAR" />
+        <result column="menucode" property="menucode" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="parentid" property="parentid" jdbcType="VARCHAR" />
+        <result column="shbj" property="shbj" jdbcType="VARCHAR" />
+        <result column="scbj" property="scbj" jdbcType="VARCHAR" />
+        <result column="addtime" property="addtime" jdbcType="DATE" />
     </resultMap>
 
-    <select id="funPage" resultMap="funMap">
-        select distinct f.* from tb_function f,tb_role r,tb_role_func t where
-        f.fun_id = t.fun_id and r.role_id = t.role_id and t.role_id in (
-            select t.role_id from tb_loginer l,tb_role r,tb_loginer_role t where
-                l.login_Id = t.loginer_id and r.role_id = t.role_id and t.loginer_Id = #{id}
-        )
+<!--    <select id="funPage" resultMap="funMap">-->
+<!--        select distinct f.* from tb_function f,tb_role r,tb_role_func t where-->
+<!--        f.fun_id = t.fun_id and r.role_id = t.role_id and t.role_id in (-->
+<!--            select t.role_id from tb_loginer l,tb_role r,tb_loginer_role t where-->
+<!--                l.login_Id = t.loginer_id and r.role_id = t.role_id and t.loginer_Id = #{id}-->
+<!--        )-->
+<!--    </select>-->
+
+    <select id="getMenuByRole" resultMap="menuMap" parameterType="String">
+        select * from auth_menu a,auth_role_menu b where
+            a.menuid = b.menuid and b.roleid = #{id} and a.scbj = '0'
     </select>
+
 
 </mapper>

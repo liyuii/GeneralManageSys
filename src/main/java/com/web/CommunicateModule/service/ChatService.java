@@ -1,6 +1,7 @@
 package com.web.CommunicateModule.service;
 
 import com.web.CommunicateModule.entity.tx_msg;
+import com.web.LoginModule.entity.Loginer;
 
 import java.util.List;
 

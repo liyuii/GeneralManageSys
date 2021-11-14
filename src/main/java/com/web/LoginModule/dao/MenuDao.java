@@ -1,13 +1,16 @@
 package com.web.LoginModule.dao;
 
 import com.web.LoginModule.entity.Function;
+import com.web.LoginModule.entity.auth_menu;
 
 import java.util.List;
 
 public interface MenuDao {
 
-    List<Function> funPage(String id);
+//    List<auth_menu> menuPage(String id);
 
-    Function getFunByName(String name);
+    auth_menu getMenuByName(String name);
+
+    List<auth_menu> getMenuByRole(String id);
 
 }

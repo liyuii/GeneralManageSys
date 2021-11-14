@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.CommunicateModule.entity.tx_msg;
 import com.web.CommunicateModule.service.ChatService;
 import com.web.CommunicateModule.serviceImpl.ChatServiceImpl;
+import com.web.LoginModule.entity.Loginer;
 import com.web.base.common.SystemConstant;
 import com.web.base.config.WebSocketConfig;
 import com.web.util.MessageUtils;

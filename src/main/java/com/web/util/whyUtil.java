@@ -1,7 +1,7 @@
 package com.web.util;
 
-import com.web.LoginModule.entity.User;
-import com.web.query.UserQuery;
+import com.web.LoginModule.entity.auth_user;
+import com.web.LoginModule.vo.UserQuery;
 import com.web.LoginModule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,11 +13,11 @@ public class whyUtil {
 
     private static UserService userService;
 
-    public static List<User> methods(){
+    public static List<auth_user> methods(){
 
         UserQuery userQuery = new UserQuery();
         userQuery.setQueryType("0");
-        List<User> users = userService.userPage(userQuery);
+        List<auth_user> users = userService.userPage(userQuery);
         return users;
     }
 

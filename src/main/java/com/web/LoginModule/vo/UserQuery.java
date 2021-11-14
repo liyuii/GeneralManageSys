@@ -1,4 +1,4 @@
-package com.web.query;
+package com.web.LoginModule.vo;
 
 import java.io.Serializable;
 

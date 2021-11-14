@@ -1,7 +1,7 @@
 package com.web.LoginModule.dao;
 
-import com.web.LoginModule.entity.User;
-import com.web.query.UserQuery;
+import com.web.LoginModule.entity.auth_user;
+import com.web.LoginModule.vo.UserQuery;
 
 import java.util.List;
 
@@ -11,37 +11,37 @@ public interface UserDao {
     *
     *获取用户列表
     */
-    List<User> userPage(UserQuery queryCmd);
+    List<auth_user> userPage(UserQuery queryCmd);
 
     /*
      *
      *获取用户列表
      */
-    void importUserInfo(User user);
+    void importUserInfo(auth_user user);
 
     /*
      *
      *通过id获取用户
      */
-    User getUserById(String userId);
+    auth_user getUserById(String userId);
 
     /*
      *
      *通过name获取用户
      */
-    User getUserByName(String userName);
+    auth_user getUserByName(String userName);
 
     /*
      *
      *添加用户
      */
-    int addUser(User user);
+    int addUser(auth_user user);
 
     /*
      *
      *更新某个用户
      */
-    int updUser(User user);
+    int updUser(auth_user user);
 
 
     /*

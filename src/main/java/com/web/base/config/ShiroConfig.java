@@ -52,8 +52,6 @@ public class ShiroConfig {
         map.put("/img/**","anon");
         map.put("/css/**","anon");
         map.put("/js/**","anon");
-//        map.put("/item/**","anon");
-        map.put("/themes/**","anon");
         map.put("/images/**","anon");
         map.put("/user/getUserList","perms[fun3]");
 

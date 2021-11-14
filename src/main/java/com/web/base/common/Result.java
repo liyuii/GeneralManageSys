@@ -32,4 +32,11 @@ public class Result<T> {
         this.data = data;
         return this;
     }
+
+    public Result<T> setData(String code,String msg,T data) {
+        this.code = code;
+        this.message = msg;
+        this.data = data;
+        return this;
+    }
 }

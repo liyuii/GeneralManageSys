@@ -1,54 +1,60 @@
 package com.web.LoginModule.service;
 
-import com.web.LoginModule.entity.User;
-import com.web.query.UserQuery;
-import org.springframework.web.multipart.MultipartFile;
+import com.web.LoginModule.dao.UserDao;
+import com.web.LoginModule.entity.auth_user;
+import com.web.LoginModule.service.UserService;
+import com.web.LoginModule.vo.UserQuery;
+import com.web.util.random.UUIDUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
-public interface UserService {
+@Service
+public class UserService {
 
-    /*
-     *
-     *获取用户列表
-     */
-    List<User> userPage(UserQuery queryCmd);
+    @Autowired
+    private UserDao userDao;
 
-    /*
-     *
-     *获取用户列表
-     */
-    int importUserInfo(MultipartFile file);
+    public List<auth_user> userPage(UserQuery queryCmd) {
+        System.out.println("userPage");
+        return userDao.userPage(queryCmd);
+    }
 
+//    @Cacheable(value = "valueName", key = "'keyName1'")
+    public auth_user getUserById(String userId) {
+        return userDao.getUserById(userId);
+    }
 
-    /*
-     *
-     *通过id获取用户
-     */
-    User getUserById(String userId);
+    public auth_user getUserByName(String userName) {
+        return userDao.getUserByName(userName);
+    }
 
-    /*
-     *
-     *通过name获取用户
-     */
-    User getUserByName(String userName);
+    public int addUser(auth_user user) {
+        user.setUserid(UUIDUtil.generateUuid());
+        user.setAddtime(new Date());
+        return userDao.addUser(user);
+    }
 
-    /*
-     *
-     *添加用户
-     */
-    int addUser(User user);
+//    @CachePut(value = "valueName", key = "'keyName1'")
+    public int updUser(auth_user user) {
+        return userDao.updUser(user);
+    }
 
-    /*
-     *
-     *更新某个用户
-     */
-    int updUser(User user);
+//    @CacheEvict(value = "valueName",allEntries = true)
+    public int delUser(String uids) {
 
+        String[] uidStore = uids.split(",");
+        int count = 0;
+        for(String uid:uidStore){
+            userDao.delUser(uid);
+            count++;
+        }
+        if(count>0){
+            return 1;
+        }
+        return 0;
+    }
 
-    /*
-     *
-     *删除某个用户
-     */
-    int delUser(String uid);
 }

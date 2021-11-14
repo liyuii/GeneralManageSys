@@ -2,6 +2,8 @@ package com.web.CommunicateModule.controller;
 
 import com.web.CommunicateModule.entity.tx_msg;
 import com.web.CommunicateModule.service.ChatService;
+import com.web.LoginModule.entity.Loginer;
+import com.web.base.common.Result;
 import com.web.base.common.SystemConstant;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;

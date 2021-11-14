@@ -1,4 +1,4 @@
-package com.web.LoginModule.entity;
+package com.web.base.common;
 
 import java.io.Serializable;
 
