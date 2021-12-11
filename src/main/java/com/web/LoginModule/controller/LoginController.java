@@ -1,5 +1,9 @@
 package com.web.LoginModule.controller;
 
+import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.CircleCaptcha;
+import cn.hutool.captcha.LineCaptcha;
+import cn.hutool.captcha.generator.RandomGenerator;
 import com.web.CommunicateModule.controller.WebsocketController;
 import com.web.LoginModule.entity.*;
 import com.web.LoginModule.service.*;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -91,15 +97,20 @@ public class LoginController {
 
     @GetMapping("/getUserAuths")
     @ResponseBody
-    public Result<auth_user> getUserAuths(auth_user user){
+    public Result<auth_user> getUserAuths(){
 
         Result<auth_user> result = new Result<>();
 
-        auth_user currentUser = userService.getUserByName(user.getUsername());
+        Subject subject = SecurityUtils.getSubject();
+        String userName = (String)subject.getPrincipal();
+
+        auth_user currentUser = userService.getUserByName(userName);
         List<auth_role> roles = roleService.rolePageByUser(currentUser.getUserid());
         for(auth_role role:roles){
             List<auth_menu> menus = menuService.getMenuByRole(role.getRoleid());
-            role.setMenus(menus);
+            //在这里处理一下菜单
+            List<auth_menu> menuTree = menuService.manageMenuTree(menus);
+            role.setMenus(menuTree);
         }
 
         for(auth_role role:roles){
@@ -113,4 +124,28 @@ public class LoginController {
         currentUser.setRoles(roles);
         return result.setData("v","获取用户权限成功",currentUser);
     }
+
+    @RequestMapping("/getCode")
+    @ResponseBody
+    public void getCode(HttpServletResponse response) {
+        // 随机生成 4 位验证码
+        RandomGenerator randomGenerator = new RandomGenerator("0123456789", 4);
+        // 定义图片的显示大小
+        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(100, 30);
+        response.setContentType("image/jpeg");
+        response.setHeader("Pragma", "No-cache");
+        try {
+            // 调用父类的 setGenerator() 方法，设置验证码的类型
+            circleCaptcha.setGenerator(randomGenerator);
+            // 输出到页面
+            circleCaptcha.write(response.getOutputStream());
+            // 打印
+            System.out.println("验证码：" + circleCaptcha.getCode());
+            // 关闭流
+            response.getOutputStream().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

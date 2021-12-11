@@ -25,6 +25,11 @@ public class auth_menu {
     private Date adddtime;
 
     /**
+     * 子菜单
+     */
+    private List<auth_menu> subMenus;
+
+    /**
      * 菜单对应权限集合
      */
     private List<auth_permission> perms;
