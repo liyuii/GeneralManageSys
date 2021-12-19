@@ -9,6 +9,7 @@ import com.web.LoginModule.entity.*;
 import com.web.LoginModule.service.*;
 import com.web.base.common.Result;
 import com.web.base.common.SystemConstant;
+import com.web.base.common.WxProperties;
 import com.web.util.SessionUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -42,6 +43,9 @@ public class LoginController {
 
     @Autowired
     PermissionService permService;
+
+    @Autowired
+    WxProperties properties;
 
     @RequestMapping("/login")
     public String getRequest(){
@@ -146,6 +150,18 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 测试配置类
+     * @param
+     * @return
+     */
+    @RequestMapping("/peoper")
+    @ResponseBody
+    public void peoper(){
+        System.out.println("测试配置类");
+        System.out.println(properties.getToken());
     }
 
 }

@@ -21,12 +21,16 @@ public class ttest {
     public static void main(String[] args) {
 
 
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add(0,"7");
-        System.out.println(list.toString());
+        WxProperties properties = new WxProperties();
+        System.out.println(properties.getToken());
+
+
+//        List<String> list = new ArrayList<>();
+//        list.add("1");
+//        list.add("2");
+//        list.add("3");
+//        list.add(0,"7");
+//        System.out.println(list.toString());
 
 //        String result = sendGet("https://timor.tech/api/holiday/year/2022/");
 ////        System.out.println(result);
