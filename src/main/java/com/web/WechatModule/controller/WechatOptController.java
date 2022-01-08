@@ -19,6 +19,7 @@ public class WechatOptController {
     @PostMapping("/verifyUrl")
     public String checkToken(@RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp,
                              @RequestParam("nonce") String nonce, @RequestParam("echostr") String echostr) {
+        System.out.println("验签");
         return checkSignatureService.checkSignature(signature, timestamp, nonce, echostr);
     }
 }
