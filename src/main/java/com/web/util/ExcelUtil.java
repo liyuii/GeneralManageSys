@@ -120,78 +120,78 @@ public class ExcelUtil {
 //        }
 //    }
 
-    /**
-     * 方法名：importExcel
-     * 功能：导入
-     * 描述：
-     * 创建人：typ
-     * 创建时间：2018/10/19 11:45
-     * 修改人：
-     * 修改描述：
-     * 修改时间：
-     */
-    public static List<Map<String,Object>> importExcel(MultipartFile file, String[] params) {
-//        log.info("导入解析开始，fileName:{}",fileName);
-        try {
-            List<Map<String,Object>> list = new ArrayList<>();
-            List<auth_user> users = new ArrayList<>();
-            InputStream inputStream = file.getInputStream();
-            Workbook workbook = WorkbookFactory.create(inputStream);
-            Sheet sheet = workbook.getSheetAt(0);
-            //获取sheet的行数
-            int rows = sheet.getPhysicalNumberOfRows();
-            if(sheet.getRow(0).getPhysicalNumberOfCells() != params.length){
-                throw new RuntimeException("error");
-            }
-
-            for (int i = 0; i < rows; i++) {
-                //过滤表头行
-                if (i == 0) {
-                    continue;
-                }
-                //获取当前行的数据
-                Row row = sheet.getRow(i);
-                Object[] objects = new Object[row.getPhysicalNumberOfCells()];
-                int index = 0;
-
-                Map<String,Object> map = new LinkedHashMap<>();
-
-                for (Cell cell : row) {
-                    if (cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
-//                        objects[index] = (int) cell.getNumericCellValue();
-                        map.put(params[i],(int) cell.getNumericCellValue());
-                    }
-                    if (cell.getCellType() == (HSSFCell.CELL_TYPE_STRING)) {
-//                        objects[index] = cell.getStringCellValue();
-                        map.put(params[i],cell.getStringCellValue());
-                    }
-                    if (cell.getCellType() == (HSSFCell.CELL_TYPE_BOOLEAN)) {
-//                        objects[index] = cell.getBooleanCellValue();
-                        map.put(params[i],cell.getBooleanCellValue());
-                    }
-                    if (cell.getCellType() == (HSSFCell.CELL_TYPE_ERROR)) {
-//                        objects[index] = cell.getErrorCellValue();
-                        map.put(params[i],cell.getErrorCellValue());
-                    }
-                    index++;
-                }
-                list.add(map);
-            }
-
-            for(Map<String,Object> single:list){
-                auth_user user = JSONObject.parseObject(JSONObject.toJSONString(single), auth_user.class);
-                users.add(user);
-            }
-
-            System.out.println(users.toString());
-            log.info("导入文件解析成功！");
-            return list;
-        }catch (Exception e){
-            log.info("导入文件解析失败！");
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    /**
+//     * 方法名：importExcel
+//     * 功能：导入
+//     * 描述：
+//     * 创建人：typ
+//     * 创建时间：2018/10/19 11:45
+//     * 修改人：
+//     * 修改描述：
+//     * 修改时间：
+//     */
+//    public static List<Map<String,Object>> importExcel(MultipartFile file, String[] params) {
+////        log.info("导入解析开始，fileName:{}",fileName);
+//        try {
+//            List<Map<String,Object>> list = new ArrayList<>();
+//            List<auth_user> users = new ArrayList<>();
+//            InputStream inputStream = file.getInputStream();
+//            Workbook workbook = WorkbookFactory.create(inputStream);
+//            Sheet sheet = workbook.getSheetAt(0);
+//            //获取sheet的行数
+//            int rows = sheet.getPhysicalNumberOfRows();
+//            if(sheet.getRow(0).getPhysicalNumberOfCells() != params.length){
+//                throw new RuntimeException("error");
+//            }
+//
+//            for (int i = 0; i < rows; i++) {
+//                //过滤表头行
+//                if (i == 0) {
+//                    continue;
+//                }
+//                //获取当前行的数据
+//                Row row = sheet.getRow(i);
+//                Object[] objects = new Object[row.getPhysicalNumberOfCells()];
+//                int index = 0;
+//
+//                Map<String,Object> map = new LinkedHashMap<>();
+//
+//                for (Cell cell : row) {
+//                    if (cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
+////                        objects[index] = (int) cell.getNumericCellValue();
+//                        map.put(params[i],(int) cell.getNumericCellValue());
+//                    }
+//                    if (cell.getCellType() == (HSSFCell.CELL_TYPE_STRING)) {
+////                        objects[index] = cell.getStringCellValue();
+//                        map.put(params[i],cell.getStringCellValue());
+//                    }
+//                    if (cell.getCellType() == (HSSFCell.CELL_TYPE_BOOLEAN)) {
+////                        objects[index] = cell.getBooleanCellValue();
+//                        map.put(params[i],cell.getBooleanCellValue());
+//                    }
+//                    if (cell.getCellType() == (HSSFCell.CELL_TYPE_ERROR)) {
+////                        objects[index] = cell.getErrorCellValue();
+//                        map.put(params[i],cell.getErrorCellValue());
+//                    }
+//                    index++;
+//                }
+//                list.add(map);
+//            }
+//
+//            for(Map<String,Object> single:list){
+//                auth_user user = JSONObject.parseObject(JSONObject.toJSONString(single), auth_user.class);
+//                users.add(user);
+//            }
+//
+//            System.out.println(users.toString());
+//            log.info("导入文件解析成功！");
+//            return list;
+//        }catch (Exception e){
+//            log.info("导入文件解析失败！");
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     //测试导入
 //    public static void main(String[] args) {

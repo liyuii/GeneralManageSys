@@ -49,7 +49,14 @@ public class ShiroConfig {
         //登出
         map.put("/logout", "logout");
         map.put("/myLogin/**","anon");
+        //放行
+        map.put("/httpclient/**","anon");
+        //对测试接口放行
         map.put("/mytest/**","anon");
+        //对jsoup接口放行
+        map.put("/crawler/**","anon");
+        //对excel接口放行
+        map.put("/excel/**","anon");
         map.put("/img/**","anon");
         map.put("/css/**","anon");
         map.put("/js/**","anon");

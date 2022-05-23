@@ -1,36 +1,28 @@
 package com.web.base.common;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.springframework.util.StringUtils;
-
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class ttest {
 
-    public static void main(String[] args) {
-
-
-        WxProperties properties = new WxProperties();
-        System.out.println(properties.getToken());
-
-
-//        List<String> list = new ArrayList<>();
-//        list.add("1");
-//        list.add("2");
-//        list.add("3");
-//        list.add(0,"7");
-//        System.out.println(list.toString());
+    public static void main(String[] args) throws IOException {
+//        WxProperties properties = new WxProperties();
+//        System.out.println(properties.getToken());
 
 //        String result = sendGet("https://timor.tech/api/holiday/year/2022/");
 ////        System.out.println(result);
@@ -48,6 +40,32 @@ public class ttest {
 //        for(WorkDay day:works){
 //            System.out.println(day);
 //        }
+//        System.setProperty("webdriver.ie.driver", "D:/soft/web/Selenium/driver/IE/IEDriverServer.exe");
+//        InternetExplorerDriver driver = new InternetExplorerDriver();
+
+        System.setProperty("webdriver.chrome.driver", "D:/soft/web/Selenium/driver/chromedriver.exe");
+//        ChromeDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        ChromeDriver driver = new ChromeDriver(options);
+//        driver.get("https://www.creditchina.gov.cn/");
+//        System.out.println("打开浏览器");
+//        driver.get("http://www.ccgp.gov.cn/");
+        driver.get("http://www.ccgp.gov.cn/cr/list/detail?id=2c8382ba7cdec1aa017fbfecfd90040c");
+//        driver.get("https://www.baidu.com/");
+//        driver.findElement(By.id("kw")).sendKeys(new String[] { "bilibili"});
+//        driver.findElement(By.id("su")).click();
+//        WebElement a = driver.findElement(By.id("1")).findElement(By.tagName("a"));
+//        System.out.println(a);
+        Long width = (Long) ((JavascriptExecutor)driver).executeScript("return document.documentElement.scrollWidth");
+        Long height = (Long) ((JavascriptExecutor)driver).executeScript("return document.documentElement.scrollHeight");
+        //设置浏览器弹窗页面的大小
+        driver.manage().window().setSize(new Dimension(width.intValue(), height.intValue()));
+        //使用getScreenshotAs进行截取屏幕
+        System.out.println("准备截图");
+        File srcFile = driver.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(srcFile, new File("D:/soft/web/Selenium/test/jj.png"));
+        System.out.println("截图完毕");
     }
 
     public static List<String> getHoliday(String year){

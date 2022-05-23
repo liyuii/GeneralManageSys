@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class WechatOptController {
+public class WechatSignController {
 
     @Autowired
     WxCheckSignatureService checkSignatureService;

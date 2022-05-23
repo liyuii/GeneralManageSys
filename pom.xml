@@ -62,18 +62,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
-        <!--excel读取 -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.14</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.14</version>
-        </dependency>
-
         <!--引入lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -119,28 +107,28 @@
         </dependency>
 
         <!--excel读取 -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.14</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.14</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi</artifactId>-->
+<!--            <version>4.1.2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi-ooxml</artifactId>-->
+<!--            <version>3.14</version>-->
+<!--        </dependency>-->
 
         <!-- excel导出 -->
-        <dependency>
-            <groupId>net.sf.jxls</groupId>
-            <artifactId>jxls-core</artifactId>
-            <version>1.0.5</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.jxls</groupId>
-            <artifactId>jxls-reader</artifactId>
-            <version>1.0.5</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>net.sf.jxls</groupId>-->
+<!--            <artifactId>jxls-core</artifactId>-->
+<!--            <version>1.0.5</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>net.sf.jxls</groupId>-->
+<!--            <artifactId>jxls-reader</artifactId>-->
+<!--            <version>1.0.5</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -159,12 +147,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
-
-        <!--引入jackson-->
-<!--        <dependency>-->
-<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
-<!--            <artifactId>jackson-databind</artifactId>-->
-<!--        </dependency>-->
 
         <!--引入fastjson-->
         <dependency>
@@ -191,7 +173,62 @@
             <artifactId>javase</artifactId>
             <version>3.4.0</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>javax.mail</groupId>-->
+<!--            <artifactId>javax.mail-api</artifactId>-->
+<!--            <version>1.6.2</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId >mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
 
+        <!--引入httpclient-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>
+        <!--引入jsoup-->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.13.1</version>
+        </dependency>
+        <!--引入词云-->
+        <dependency>
+            <groupId>com.kennycason</groupId>
+            <artifactId>kumo-core</artifactId>
+            <version>1.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kennycason</groupId>
+            <artifactId>kumo-tokenizers</artifactId>
+            <version>1.12</version>
+        </dependency>
+        <!--引入easypoi-->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-spring-boot-starter</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <!--selenium-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>23.0</version>
+        </dependency>
     </dependencies>
 
     <build>
