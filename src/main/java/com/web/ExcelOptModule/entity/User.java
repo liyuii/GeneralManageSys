@@ -15,5 +15,6 @@ public class User {
     private String name;
     private String mobile;
     private Integer age;
-
+    private Integer deposit;
+    private String school;
 }

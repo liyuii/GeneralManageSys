@@ -1,11 +1,7 @@
 package com.web.base.shiro;
 
-import com.web.LoginModule.entity.Function;
-import com.web.LoginModule.entity.Loginer;
-import com.web.LoginModule.entity.auth_role;
-import com.web.LoginModule.entity.auth_user;
-import com.web.LoginModule.service.LoginService;
-import com.web.LoginModule.service.UserService;
+import com.web.ManageModule.entity.auth_user;
+import com.web.ManageModule.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,9 +12,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomerRealm extends AuthorizingRealm {
 

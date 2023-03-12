@@ -1,8 +1,7 @@
 package com.web.base.config;
 
-import com.web.LoginModule.entity.auth_user;
+import com.web.ManageModule.entity.auth_user;
 import com.web.base.common.SystemConstant;
-import com.web.LoginModule.entity.Loginer;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.context.annotation.Bean;

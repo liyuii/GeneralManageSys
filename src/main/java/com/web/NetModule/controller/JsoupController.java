@@ -17,6 +17,11 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.client.indices.CreateIndexResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +37,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/crawler")
 public class JsoupController {
+
+    @Autowired
+    private RestHighLevelClient restHighLevelClient;
 
     /**
      *
@@ -95,4 +103,5 @@ public class JsoupController {
         wordCloud.writeToFile("D:\\wy.png");
 
     }
+
 }

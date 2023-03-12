@@ -13,13 +13,13 @@ import java.io.IOException;
 //@PropertySource("classpath:config.properties")
 public class ExportController {
 
-    /**
-     * 从本地加载
-     * @throws IOException
-     */
-    @GetMapping("/imports")
-    public void importExcel2() throws IOException {//@RequestParam("file") MultipartFile file
-
-    }
+//    /**
+//     * 从本地加载
+//     * @throws IOException
+//     */
+//    @GetMapping("/imports")
+//    public void importExcel2() throws IOException {//@RequestParam("file") MultipartFile file
+//
+//    }
 
 }

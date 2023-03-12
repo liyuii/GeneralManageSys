@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.ManageModule.dao.UserDao">
+
+    <resultMap id="UserMap" type="com.web.ManageModule.entity.auth_user" >
+        <id column="userid" property="userid" jdbcType="CHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+        <result column="realname" property="realname" jdbcType="VARCHAR" />
+        <result column="shbj" property="shbj" jdbcType="VARCHAR" />
+        <result column="scbj" property="scbj" jdbcType="VARCHAR" />
+        <result column="addtime" property="addtime" jdbcType="DATE" />
+    </resultMap>
+
+    <select id="userPage" resultMap="UserMap" parameterType="com.web.ManageModule.vo.UserQuery">
+        select * from auth_user where 1=1
+        <if test="queryName != null and queryName != ''">
+            and username like "%"#{queryName}"%"
+        </if>
+    </select>
+
+    <insert id="addUser" parameterType="com.web.ManageModule.entity.auth_user">
+        insert into auth_user(userid,username,realname,shbj,scbj,addtime)
+        values(
+            #{userid,jdbcType=CHAR},
+            #{username,jdbcType=VARCHAR},
+            #{realname,jdbcType=VARCHAR},
+            #{shbj,jdbcType=VARCHAR},
+            #{scbj,jdbcType=DECIMAL},
+            #{addtime,jdbcType=DECIMAL}
+        )
+    </insert>
+
+    <update id="updUser" parameterType="com.web.ManageModule.entity.auth_user">
+        update auth_user
+        <set>
+            <if test="username != null and username != ''">username = #{username},</if>
+            <if test="realname != null and realname != ''">realname = #{realname},</if>
+            <if test="shbj != null and shbj != ''">shbj = #{shbj},</if>
+            <if test="scbj != null and scbj != ''">scbj = #{scbj}</if>
+        </set>
+        where userid = #{userid}
+    </update>
+
+    <delete id="delUser" parameterType="java.lang.String">
+        delete from auth_user where userid=#{userid}
+    </delete>
+
+    <select id="getUserById" resultMap="UserMap" parameterType="java.lang.String">
+        select * from auth_user where userid=#{userid}
+    </select>
+
+    <select id="getUserByName" resultMap="UserMap" parameterType="java.lang.String">
+        select * from auth_user where username=#{username}
+    </select>
+
+</mapper>

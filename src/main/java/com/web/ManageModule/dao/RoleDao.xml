@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.ManageModule.dao.RoleDao">
+
+    <resultMap id="roleMap" type="com.web.ManageModule.entity.auth_role">
+        <id column="roleid" property="roleid" jdbcType="VARCHAR" />
+        <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+        <result column="rolecode" property="rolecode" jdbcType="VARCHAR" />
+        <result column="shbj" property="shbj" jdbcType="VARCHAR" />
+        <result column="scbj" property="scbj" jdbcType="VARCHAR" />
+        <result column="addtime" property="addtime" jdbcType="DATE" />
+    </resultMap>
+
+<!--    <select id="rolePage" resultMap="roleMap">-->
+<!--                select * from tb_loginer l,tb_role r,tb_loginer_role t where-->
+<!--        l.login_Id = t.loginer_id and r.role_id = t.role_id and t.loginer_Id = #{id}-->
+<!--    </select>-->
+
+<!--    <select id="getRoleByName" resultMap="roleMap">-->
+<!--        select * from tb_loginer where role_id = #{id}-->
+<!--    </select>-->
+
+    <select id="getRoleByUser" resultMap="roleMap" parameterType="String">
+        select * from auth_role l,auth_user_role t where
+            l.roleid = t.roleid and t.userid = #{id} and scbj = '0'
+    </select>
+
+</mapper>

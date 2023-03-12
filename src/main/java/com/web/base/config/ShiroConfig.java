@@ -46,6 +46,10 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String, String> map = new HashMap<>();
+        //swagger
+        map.put("/swagger*/**", "anon");
+        map.put("/v2/**", "anon");
+        map.put("/webjars/**", "anon");
         //登出
         map.put("/logout", "logout");
         map.put("/myLogin/**","anon");
@@ -55,20 +59,23 @@ public class ShiroConfig {
         map.put("/mytest/**","anon");
         //对jsoup接口放行
         map.put("/crawler/**","anon");
+        //对es接口放行
+        map.put("/es/**","anon");
         //对excel接口放行
-        map.put("/excel/**","anon");
+        map.put("/web/**","anon");
+        map.put("/hanlp/**","anon");
         map.put("/img/**","anon");
         map.put("/css/**","anon");
         map.put("/js/**","anon");
         map.put("/images/**","anon");
-        map.put("/user/getUserList","perms[fun3]");
+//        map.put("/user/getUserList","perms[fun3]");
 
         //对所有用户认证
         map.put("/**", "authc");
         //登录
-        shiroFilterFactoryBean.setLoginUrl("/myLogin/login");
+//        shiroFilterFactoryBean.setLoginUrl("/myLogin/login");
         //首页
-        shiroFilterFactoryBean.setSuccessUrl("/index");
+//        shiroFilterFactoryBean.setSuccessUrl("/index");
         //错误页面，认证不通过跳转
         shiroFilterFactoryBean.setUnauthorizedUrl("/error");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);

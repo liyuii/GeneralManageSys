@@ -1,16 +1,6 @@
 package com.web.util;
 
-import com.alibaba.fastjson.JSONObject;
-import com.web.LoginModule.entity.auth_user;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.ss.usermodel.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.*;
 
 /**
  * 路径：com.example.demo.utils

@@ -3,8 +3,8 @@ package com.web.CommunicateModule.serviceImpl;
 import com.web.CommunicateModule.dao.ChatDao;
 import com.web.CommunicateModule.entity.tx_msg;
 import com.web.CommunicateModule.service.ChatService;
-import com.web.LoginModule.dao.LoginerDao;
-import com.web.LoginModule.entity.Loginer;
+import com.web.ManageModule.dao.LoginerDao;
+import com.web.ManageModule.entity.Loginer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

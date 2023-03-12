@@ -1,20 +1,26 @@
+#端口号
+server:
+  port: 9201
+  servlet:
+    context-path: /general
 
+# spring设置
 spring:
   main:
     allow-bean-definition-overriding: true
   # 配置数据源
-  datasource:
-#    url: jdbc:oracle:thin:@192.168.1.47:1521/orcl
-    url: jdbc:oracle:thin:@127.0.0.1:1521/oracle
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: liyuii
-    password: liyuii
 #  datasource:
-##    url: jdbc:mysql://localhost:3306/netfactory?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
+#    url: jdbc:oracle:thin:@192.168.1.47:1521/orcl
+#    url: jdbc:oracle:thin:@127.0.0.1:1521/oracle
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    username: liyuii
+#    password: liyuii
+  datasource:
+    url: jdbc:mysql://localhost:3306/netfactory?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
 #    url: jdbc:mysql://47.102.197.84:3306/netfactory?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
-#    driver-class-name: com.mysql.jdbc.Driver
-#    username: root
-#    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
 #    password:
 
   # 配置redis
@@ -31,13 +37,13 @@ spring:
         min-idle: 0
     timeout: 1000
 
-  # 配置thymeleaf
-  thymeleaf:
-    prefix: classpath:/static/
-    suffix: .html
+#  # 配置thymeleaf
+#  thymeleaf:
+#    prefix: classpath:/static/
+#    suffix: .html
 
-  resources:
-    static-locations: classpath:/static/
+#  resources:
+#    static-locations: classpath:/static/
 
 #配置mybatis
 mybatis:
@@ -54,9 +60,7 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
 
-#端口号
-server:
-  port: 8080
+
 
 
 
